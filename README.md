@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://galasulin.github.io/shift-scheduler-showcase/demo/"><img alt="Live demo" src="https://img.shields.io/badge/Live_demo-open-17181C?style=for-the-badge"></a>
-  <img alt="Status" src="https://img.shields.io/badge/Status-Phase_1_in_development-2B5BA8?style=for-the-badge">
+  <img alt="Status" src="https://img.shields.io/badge/Status-Phase_1_built-2B5BA8?style=for-the-badge">
   <img alt="Platform" src="https://img.shields.io/badge/Windows-Portable-B4531A?style=for-the-badge">
   <img alt="RTL" src="https://img.shields.io/badge/UI-Hebrew_RTL-1E5B35?style=for-the-badge">
 </p>
@@ -32,6 +32,7 @@ A service business with five branches ran its staff schedule in separate Excel f
 | **No fixed shifts** | Every assignment is a person with their own hours that day (07:30–14:00, 16:00–21:00). One-click presets and per-employee regular hours save typing, but never lock you in. |
 | **Coverage at a glance** | A coverage strip under every day shows which opening hours are covered and which are left without anyone. Informational, no nagging rules. |
 | **Opening hours per branch and day** | Each branch has its own opening hours per weekday, and any date can get a one-off exception (late Wednesday, holiday eve). Changes apply from a chosen date and never rewrite past weeks. |
+| **Change a day from the diary** | Click a day's header to change its hours or close the branch for that date only, right from the weekly diary. The regular weekly hours stay as they are, and one click goes back to them. |
 | **Plan ahead, then lock** | Schedule weeks and months in advance. Copy last week as a starting point, adjust the hours, lock the week. |
 | **Hours at a glance** | Every employee has a live counter against a weekly target. Going over turns red. |
 | **Smart warnings** | Double booking across branches is blocked. Absences, overtime and short rest periods raise warnings before you assign. |
@@ -138,8 +139,8 @@ Sidur\
 - [x] Research of existing tools (Deputy, When I Work, Homebase, open-source schedulers)
 - [x] Product spec, data model and warning rules
 - [x] UI design, review pack and interactive prototype
-- [ ] **Phase 1** · Login and users, branches, sections, employees, opening hours and presets, weekly diary with per-person hours, coverage strip, hour counters, PDF print
-- [ ] **Phase 2** · Absences, warnings, week locking, copy previous week, auto backup
+- [x] **Phase 1** · Login and users, branches, sections, employees, opening hours and presets, changing a day's hours from the diary, weekly diary with per-person hours, coverage strip, hour counters, week locking, copy previous week, auto backup, PDF print
+- [ ] **Phase 2** · Absences, warnings
 - [ ] **Phase 3** · Day view across branches, month view, reports, Excel export
 - [ ] **Phase 4** · Excel import of existing staff, full audit log
 
