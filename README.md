@@ -29,6 +29,7 @@ A service business with five branches ran its staff schedule in separate Excel f
 | | |
 |---|---|
 | **Diary per branch** | A tab for every branch. Each branch has a *front desk* section and a *professional staff* section, with morning and evening shifts. |
+| **Hours that differ per branch** | Every branch has its own shift hours, a weekday can differ (late Wednesday, short Friday), and any date can get a one-off exception. Changes apply from a chosen date and never rewrite past weeks. |
 | **Plan ahead, then lock** | Schedule weeks and months in advance. Copy last week as a starting point, fill the red gaps, lock the week. |
 | **Hours at a glance** | Every employee has a live counter against a weekly target. Going over turns red. |
 | **Smart warnings** | Double booking across branches is blocked. Absences, overtime and short rest periods raise warnings before you assign. |
@@ -65,7 +66,7 @@ A service business with five branches ran its staff schedule in separate Excel f
 
 **[Open the interactive demo →](https://galasulin.github.io/shift-scheduler-showcase/demo/)**
 
-Switch branches, move between weeks, click a red gap to assign someone, remove a shift, copy last week and lock it. Hour counters, gaps and KPIs update live. Everything is stored only in your browser.
+Switch branches (each one has different shift hours), move between weeks, click a red gap to assign someone, remove a shift, copy last week and lock it. Hour counters, gaps and KPIs update live. Everything is stored only in your browser.
 
 ---
 
