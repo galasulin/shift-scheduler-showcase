@@ -9,11 +9,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Rubik:wght@500;600;700&display=swap">
 <style>
-:root{--bg:#F4F3EF;--card:#FFF;--ink:#17181C;--muted:#5E6068;--line:#E3E1DA;--sec:#2B5BA8;--sec-t:#E7EEF9;--sec-i:#1B3F7A;--ther:#B4531A;--ther-t:#FBEADF;--ther-i:#7A3410;--bad:#9B1C1C;--bad-t:#FFF5F4;--ok:#1E5B35;--ok-t:#E3F1E8;--warn:#7A4B00;--warn-t:#FFF4D6}
+:root{--bg:#F4F3EF;--card:#FFF;--ink:#17181C;--muted:#5E6068;--line:#E3E1DA;--sec:#2B5BA8;--sec-t:#E7EEF9;--sec-i:#1B3F7A;--ther:#B4531A;--ther-t:#FBEADF;--ther-i:#7A3410;--bad:#9B1C1C;--bad-t:#FFF5F4;--ok:#1E5B35;--ok-t:#E3F1E8;--warn:#7A4B00;--warn-t:#FFF4D6;--spc:#6D28D9}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Assistant',system-ui,sans-serif}
 h1,h2,h3,.rb{font-family:'Rubik',system-ui,sans-serif}
-button{font:inherit;cursor:pointer}
+button,input,select{font:inherit}
+button{cursor:pointer}
 .demo-note{background:var(--ink);color:#D6D7DB;font-size:13.5px;padding:8px 16px;text-align:center}
 .demo-note a{color:#FFF}
 .topbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:var(--card);border-bottom:1px solid var(--line)}
@@ -34,40 +35,56 @@ button{font:inherit;cursor:pointer}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;padding:8px 20px 2px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px}
 .kpi{padding:10px 14px}.kpi .l{font-size:12.5px;color:var(--muted);font-weight:600}.kpi .v{font-family:'Rubik';font-size:24px;font-weight:700}
-.kpi.bad{background:var(--bad-t);border-color:#F3C9C4}.kpi.bad .l,.kpi.bad .v{color:var(--bad)}
-.body{display:flex;flex-wrap:wrap;gap:12px;padding:10px 20px 24px;align-items:flex-start}
-aside{flex:1 1 260px;max-width:300px;padding:13px;display:flex;flex-direction:column;gap:9px}
+.body{display:flex;flex-wrap:wrap;gap:12px;padding:10px 20px 10px;align-items:flex-start}
+aside{flex:1 1 250px;max-width:290px;padding:13px;display:flex;flex-direction:column;gap:9px}
 main{flex:999 1 640px;min-width:0;padding:10px}
 .scroll{overflow-x:auto}
-.inner{min-width:1000px;display:flex;flex-direction:column;gap:6px}
-.wrow{display:grid;grid-template-columns:118px repeat(6,minmax(0,1fr));gap:6px}
+.inner{min-width:1060px;display:flex;flex-direction:column;gap:6px}
+.wrow{display:grid;grid-template-columns:104px repeat(6,minmax(0,1fr));gap:6px}
 .rl{display:flex;flex-direction:column;justify-content:center;padding:0 2px}.rl b{font-size:14px}.rl span{font-size:12px;color:var(--muted)}
 .dayh{padding:8px 10px;border-radius:10px;background:#F7F6F2}.dayh b{font-family:'Rubik';font-size:15px;display:block}.dayh span{font-size:12px;color:var(--muted)}
+.dayh .spc{color:var(--spc);font-weight:700}
 .sechead{display:flex;align-items:center;gap:8px;padding:8px 2px 1px;border-top:1px solid #EEECE6;margin-top:4px}.sechead i{width:9px;height:9px;border-radius:50%}.sechead b{font-family:'Rubik';font-size:15px}.sechead span{font-size:12.5px;color:var(--muted)}
-.cell{background:#FFF;border:1px solid var(--line);border-radius:10px;padding:7px;display:flex;flex-direction:column;gap:5px;min-height:84px}
-.closed{background:repeating-linear-gradient(135deg,#F1EFE9 0 8px,#ECEAE3 8px 16px);border:1px solid var(--line);border-radius:10px;min-height:84px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;font-weight:600}
-.chip{display:flex;align-items:center;gap:7px;padding:4px 6px 4px 9px;border-radius:8px;font-size:13px;font-weight:600;white-space:nowrap}
-.chip .ini{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex:none}
-.chip .x{margin-inline-start:auto;border:0;background:transparent;width:24px;height:24px;border-radius:6px;color:inherit;opacity:.55}
-.chip .x:hover{opacity:1;background:rgba(0,0,0,.06)}
-.sec{background:var(--sec-t);color:var(--sec-i)}.sec .ini{background:var(--sec);color:#FFF}
-.ther{background:var(--ther-t);color:var(--ther-i)}.ther .ini{background:var(--ther);color:#FFF}
-.off{background:#ECEBE6;color:#3E4047}.off .ini{background:#6B6D75;color:#FFF}
-.gap{width:100%;min-height:34px;border-radius:8px;border:1.5px dashed #B42318;background:var(--bad-t);color:var(--bad);font-size:12.5px;font-weight:700}
-.add{width:100%;min-height:28px;border-radius:8px;border:1px dashed #CFCCC3;background:transparent;color:var(--muted);font-size:14px;font-weight:600}
-.locked .gap,.locked .add,.locked .x{display:none}
+.cell{background:#FFF;border:1px solid var(--line);border-radius:10px;padding:7px;display:flex;flex-direction:column;gap:5px;min-height:150px}
+.pchip{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:4px 4px 4px 6px;border-radius:8px;font-size:13px;font-weight:600;border:0;width:100%;text-align:right}
+.pchip .nm{display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;white-space:nowrap}
+.pchip .h{font-family:'Rubik';font-size:11.5px;font-weight:500;direction:ltr;white-space:nowrap}
+.pchip{position:relative}
+.pchip .x{position:absolute;left:3px;top:50%;transform:translateY(-50%);border:0;width:24px;height:24px;border-radius:6px;color:inherit;opacity:0;background:#FFF;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.pchip:hover .x,.pchip .x:focus-visible{opacity:1}
+.ini{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex:none;color:#FFF}
+.sec{background:var(--sec-t);color:var(--sec-i)}.sec .ini{background:var(--sec)}
+.ther{background:var(--ther-t);color:var(--ther-i)}.ther .ini{background:var(--ther)}
+.off{background:#ECEBE6;color:#3E4047;display:flex;align-items:center;gap:7px;padding:4px 9px;border-radius:8px;font-size:13px;font-weight:600}.off .ini{background:#6B6D75}
+.add{width:100%;min-height:30px;border-radius:8px;border:1px dashed #CFCCC3;background:transparent;color:var(--muted);font-size:13px;font-weight:600}
+.add:hover{border-color:var(--ink);color:var(--ink)}
+.locked .add,.locked .x{display:none}
+.strip{position:relative;height:10px;border-radius:5px;background:#ECEAE3;overflow:hidden;margin-top:2px}
+.strip i{position:absolute;top:0;bottom:0;display:block}
+.covnote{font-size:11.5px;font-weight:600;color:var(--muted);margin-top:4px}
+.closed{background:repeating-linear-gradient(135deg,#F1EFE9 0 8px,#ECEAE3 8px 16px);border:1px solid var(--line);border-radius:10px;min-height:150px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:16px;padding:0 20px 8px;font-size:12.5px;color:#3E4047}
+.legend span{display:flex;align-items:center;gap:6px}.legend i{width:20px;height:8px;border-radius:4px;display:block}
 .emp{display:flex;flex-direction:column;gap:5px;padding:7px 8px;border-radius:10px;border:1px solid #EEECE6}
 .emp .r{display:flex;justify-content:space-between;align-items:center}
 .bar{height:5px;border-radius:3px;background:#ECEAE3;overflow:hidden}.bar i{display:block;height:5px}
 .foot{text-align:center;font-size:12.5px;color:#6B6D75;padding:4px 0 24px}.foot a{color:#4A4C54}
-dialog{border:0;border-radius:14px;padding:0;width:min(560px,94vw);box-shadow:0 20px 50px rgba(0,0,0,.25)}
+dialog{border:0;border-radius:14px;padding:0;width:min(600px,94vw);box-shadow:0 20px 50px rgba(0,0,0,.25)}
 dialog::backdrop{background:rgba(23,24,28,.4)}
 .dlg{padding:20px 22px;display:flex;flex-direction:column;gap:10px}
-.opt{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:#FFF;text-align:right}
-.opt:hover:not(:disabled){border-color:var(--ink)}
+.step{font-size:13px;font-weight:700;color:#4A4C54}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;padding:8px 11px;border:1px solid var(--line);border-radius:10px;background:#FFF;text-align:right}
+.opt[aria-pressed="true"]{border-color:var(--ok);box-shadow:0 0 0 1px var(--ok) inset}
 .opt:disabled{opacity:.55;cursor:not-allowed}
+.preset{border:1px solid #D9D6CE;background:#FFF;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:600}
+.preset[aria-pressed="true"]{background:var(--ink);color:#FFF;border-color:var(--ink)}
+.times{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.times label{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;color:#3E4047}
+.times select{height:42px;border:1px solid #D9D6CE;border-radius:10px;background:#FAF9F6;padding:0 10px;font-size:15px;direction:ltr}
+.note{padding:9px 11px;border-radius:10px;font-size:13px;font-weight:600}
+.n-ok{background:var(--ok-t);color:var(--ok)}.n-warn{background:var(--warn-t);color:var(--warn)}.n-bad{background:var(--bad-t);color:var(--bad)}
 .tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700}
-.t-ok{background:var(--ok-t);color:var(--ok)}.t-warn{background:var(--warn-t);color:var(--warn)}.t-bad{background:var(--bad-t);color:var(--bad)}.t-dis{background:#ECEBE6;color:#3E4047}
+.t-ok{background:var(--ok-t);color:var(--ok)}.t-warn{background:var(--warn-t);color:var(--warn)}.t-bad{background:var(--bad-t);color:var(--bad)}
 .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:#FFF;padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.on{opacity:1}
 </style>
@@ -101,6 +118,12 @@ dialog::backdrop{background:rgba(23,24,28,.4)}
   <aside class="card" aria-label="עובדי הסניף" id="side"></aside>
   <main class="card"><div class="scroll"><div class="inner" id="grid"></div></div></main>
 </div>
+<div class="legend" aria-label="מקרא">
+  <span><i style="background:#9DB6DD"></i>שעות מכוסות</span>
+  <span><i style="background:#F2D9A6"></i>שעות פתיחה בלי עובד</span>
+  <span><i style="background:#ECEAE3"></i>הסניף סגור</span>
+  <span><i style="background:#6D28D9"></i>שעות פתיחה מיוחדות</span>
+</div>
 <div class="foot">נבנה על ידי <b>גל אסולין</b> | IT Manager | The King | <a href="https://github.com/galasulin">github.com/galasulin</a></div>
 
 <dialog id="dlg"><div class="dlg" id="dlgBody"></div></dialog>
@@ -108,6 +131,7 @@ dialog::backdrop{background:rgba(23,24,28,.4)}
 
 <script>
 (function () {
+  // ---------- sample data (fictional) ----------
   var BR = [
     { id: 'merkaz', name: 'מרכז', sec: [['נועה', 30], ['מיכל', 26], ['שירן', 26], ['ליאת', 24]], ther: [['דניאל', 30], ['אורית', 26], ['יוסי', 28], ['תמר', 24], ['רועי', 24]] },
     { id: 'tzafon', name: 'צפון', sec: [['עדי', 30], ['הילה', 26], ['רוני', 26], ['ענבל', 24]], ther: [['אלון', 30], ['מאיה', 26], ['עומר', 28], ['שני', 24], ['אריאל', 24]] },
@@ -115,170 +139,201 @@ dialog::backdrop{background:rgba(23,24,28,.4)}
     { id: 'shfela', name: 'שפלה', sec: [['רותם', 30], ['ספיר', 26], ['טל', 26], ['אושרית', 24]], ther: [['עידו', 30], ['קרן', 26], ['אסף', 28], ['מור', 24], ['יובל', 24]] },
     { id: 'darom', name: 'דרום', sec: [['אביטל', 30], ['שחר', 26], ['הדר', 26], ['סיון', 24]], ther: [['ניר', 30], ['אנה', 26], ['בן', 28], ['גלית', 24], ['אייל', 24]] }
   ];
-  var SH = {
-    sec: [{ k: 'm', l: 'בוקר', t: ['07:30', '14:00'], need: 2, fri: { t: ['08:00', '13:00'], need: 1 } }, { k: 'e', l: 'ערב', t: ['13:30', '20:00'], need: 1, fri: null }],
-    ther: [{ k: 'm', l: 'בוקר', t: ['08:00', '14:00'], need: 2, fri: { t: ['08:00', '13:00'], need: 1 } }, { k: 'e', l: 'ערב', t: ['14:00', '20:00'], need: 2, fri: null }]
+  // opening hours per branch and weekday (Sun..Fri); every branch is different
+  var OPEN = {
+    merkaz: [['07:30', '20:00'], ['08:00', '20:00'], ['07:30', '19:00'], ['07:30', '20:00'], ['08:00', '20:00'], ['08:00', '13:00']],
+    tzafon: [['08:00', '19:30'], ['08:00', '19:30'], ['08:30', '20:00'], ['08:00', '19:30'], ['08:00', '18:00'], ['08:30', '13:30']],
+    sharon: [['07:00', '19:00'], ['07:00', '19:30'], ['07:00', '19:00'], ['07:30', '19:00'], ['07:00', '18:30'], ['07:30', '12:30']],
+    shfela: [['08:00', '21:00'], ['08:00', '21:00'], ['08:00', '20:00'], ['08:00', '21:00'], ['08:00', '19:00'], ['08:00', '14:00']],
+    darom: [['07:30', '19:00'], ['07:30', '19:00'], ['07:30', '19:30'], ['07:30', '19:00'], ['07:30', '18:00'], ['07:30', '12:00']]
   };
-  var ROLE = { sec: { title: 'צוות שירות', sub: 'קבלת לקוחות, טלפונים ותיאום', color: '#2B5BA8' }, ther: { title: 'צוות מקצועי', sub: 'אנשי המקצוע בסניף', color: '#B4531A' } };
+  // one-off date exceptions: branch|week|day -> hours or null (closed)
+  var SPECIAL = { 'merkaz|0|3': ['07:30', '21:00'], 'shfela|1|4': ['08:00', '16:00'], 'tzafon|2|1': null };
+  var ROLE = { sec: { title: 'צוות שירות', sub: 'קבלת לקוחות, טלפונים ותיאום', color: '#2B5BA8', cov: '#9DB6DD' }, ther: { title: 'צוות מקצועי', sub: 'אנשי המקצוע בסניף', color: '#B4531A', cov: '#E9B08C' } };
   var DAYS = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי'];
   var BASE = Date.UTC(2026, 9, 25); // Sunday 25.10.2026
-  var KEY = 'sidur-demo-v2';
-
+  var KEY = 'sidur-demo-v3';
+  var T0 = 7 * 60, T1 = 21 * 60 + 30;
 
   var cur = { b: 0, w: 0 };
-  function mins(t) { var p = t.split(':'); return +p[0] * 60 + +p[1]; }
-  function hrs(t) { return (mins(t[1]) - mins(t[0])) / 60; }
+  var st;
+
+  function m(t) { var p = t.split(':'); return +p[0] * 60 + +p[1]; }
+  function hm(x) { return String(Math.floor(x / 60)).padStart(2, '0') + ':' + String(x % 60).padStart(2, '0'); }
   function fmt(x) { return (Math.round(x * 10) / 10).toString(); }
   function wdate(w, d) { var dt = new Date(BASE + (w * 7 + d) * 864e5); return dt.getUTCDate() + '.' + (dt.getUTCMonth() + 1); }
-  function slotK(b, w, r, s, d) { return [b, w, r, s, d].join('|'); }
-  // Each branch has its own hours, and a weekday can differ from the branch default.
-  var HOURS = {
-    merkaz: { sec: { m: ['07:30', '14:00'], e: ['13:30', '20:00'] }, ther: { m: ['08:00', '14:00'], e: ['14:00', '20:00'] }, fri: ['08:00', '13:00'], days: { 3: { sec: { e: ['13:30', '21:00'] }, ther: { e: ['14:00', '21:00'] } } } },
-    tzafon: { sec: { m: ['08:00', '14:30'], e: ['14:00', '19:30'] }, ther: { m: ['08:30', '14:30'], e: ['14:30', '20:00'] }, fri: ['08:30', '13:30'], days: {} },
-    sharon: { sec: { m: ['07:00', '13:00'], e: ['12:30', '19:00'] }, ther: { m: ['07:30', '13:30'], e: ['13:30', '19:30'] }, fri: ['07:30', '12:30'], days: { 1: { ther: { m: ['07:00', '13:30'] } } } },
-    shfela: { sec: { m: ['08:00', '15:00'], e: ['14:30', '21:00'] }, ther: { m: ['08:00', '15:00'], e: ['15:00', '21:00'] }, fri: ['08:00', '14:00'], days: { 4: { sec: { e: ['14:30', '19:00'] }, ther: { e: ['15:00', '19:00'] } } } },
-    darom: { sec: { m: ['07:30', '13:30'], e: ['13:00', '19:00'] }, ther: { m: ['07:30', '13:30'], e: ['13:30', '19:30'] }, fri: ['07:30', '12:00'], days: {} }
-  };
-  var BID = null;
-  function curBid() { return BID || BR[cur.b].id; }
-  function baseT(r, s) { return HOURS[curBid()][r][s]; }
-  function shiftOf(r, s, d) {
-    var x = SH[r].filter(function (z) { return z.k === s; })[0], H = HOURS[curBid()];
-    if (d === 5) return x.fri ? { t: H.fri, need: x.fri.need } : null;
-    var dd = H.days[d] && H.days[d][r] && H.days[d][r][s];
-    return { t: dd || H[r][s], need: x.need };
-  }
-  function rnd(seedN) { var x = Math.sin(seedN) * 10000; return x - Math.floor(x); }
+  function key(b, w, r, d) { return [b, w, r, d].join('|'); }
+  function rnd(n) { var x = Math.sin(n) * 10000; return x - Math.floor(x); }
+  function open(bid, w, d) { var k = bid + '|' + w + '|' + d; return k in SPECIAL ? SPECIAL[k] : OPEN[bid][d]; }
+  function isSpecial(bid, w, d) { return (bid + '|' + w + '|' + d) in SPECIAL; }
+  function snap(x) { return Math.round(x / 30) * 30; }
 
+  // ---------- seed: everyone gets their own hours, nothing fixed ----------
   function seed() {
     var s = { a: {}, abs: {}, lock: {} };
     BR.forEach(function (br, bi) {
-      BID = br.id;
-      for (var w = -1; w <= 4; w++) {
-        ['sec', 'ther'].forEach(function (r, ri) {
-          var h = {}, tg = {}; br[r].forEach(function (e) { h[e[0]] = 0; tg[e[0]] = e[1]; });
+      ['sec', 'ther'].forEach(function (r, ri) {
+        var h = {}; br[r].forEach(function (e) { h[e[0]] = 0; });
+        for (var w = -1; w <= 4; w++) {
+          if (w === 0 || w === -1) br[r].forEach(function (e) { h[e[0]] = 0; });
           for (var d = 0; d < 6; d++) {
-            var used = [];
-            SH[r].forEach(function (sh, si) {
-              var x = shiftOf(r, sh.k, d); if (!x) return;
-              var cand = br[r].map(function (e) { return e[0]; }).filter(function (n) { return used.indexOf(n) < 0; });
-              cand.sort(function (p, q) { return (h[p] / tg[p] - h[q] / tg[q]) || (rnd(bi + w * 7 + d * 3 + p.length) - rnd(bi + w * 5 + d + q.length)); });
-              var n = x.need;
-              if (w >= 0 && rnd(bi * 97 + w * 31 + ri * 13 + si * 7 + d * 3 + 1) > 0.9) n = n - 1;
-              var pick = cand.slice(0, n);
-              pick.forEach(function (p) { h[p] += hrs(x.t); used.push(p); });
-              s.a[slotK(br.id, w, r, sh.k, d)] = pick;
-            });
+            var o = open(br.id, w, d); if (!o) continue;
+            var oa = m(o[0]), ob = m(o[1]), len = ob - oa, list = [];
+            var names = br[r].map(function (e) { return e[0]; }).sort(function (p, q) { return h[p] - h[q] || rnd(bi + w + d + p.length) - rnd(bi + d + q.length); });
+            var n = len <= 360 ? 1 : (rnd(bi * 7 + w * 3 + d + ri) > 0.55 ? 3 : 2);
+            if (n === 1) list.push([names[0], hm(oa), hm(ob)]);
+            else if (n === 2) {
+              var cut = snap(oa + len * (0.45 + rnd(d + w + bi) * 0.15));
+              list.push([names[0], hm(oa), hm(Math.min(ob, cut + 30))]);
+              list.push([names[1], hm(cut), hm(ob)]);
+            } else {
+              var c1 = snap(oa + len * 0.42), c2 = snap(oa + len * 0.58);
+              list.push([names[0], hm(oa), hm(c1)]);
+              list.push([names[1], hm(snap(oa + len * 0.2)), hm(snap(oa + len * 0.7))]);
+              list.push([names[2], hm(c2), hm(ob)]);
+            }
+            // a deliberate uncovered window now and then
+            if (w >= 0 && rnd(bi * 31 + w * 17 + d * 5 + ri) > 0.82 && list.length > 1) {
+              var last = list[list.length - 1]; last[1] = hm(Math.min(m(last[2]) - 120, m(last[1]) + 90));
+            }
+            list.forEach(function (p) { h[p[0]] += (m(p[2]) - m(p[1])) / 60; });
+            s.a[key(br.id, w, r, d)] = list.map(function (p) { return { n: p[0], s: p[1], e: p[2] }; });
           }
-        });
-      }
-    });
-    BID = null;
-    s.abs[slotK('merkaz', 0, '', '', 3)] = [['שירן', 'חופשה']];
-    s.abs[slotK('merkaz', 0, '', '', 4)] = [['רועי', 'מחלה']];
-    s.abs[slotK('tzafon', 0, '', '', 1)] = [['מאיה', 'מילואים']];
-    s.lock['merkaz|-1'] = true; s.lock['tzafon|-1'] = true;
-    // remove absentees from their days
-    Object.keys(s.abs).forEach(function (k) {
-      var p = k.split('|'); s.abs[k].forEach(function (a) {
-        ['sec', 'ther'].forEach(function (r) { ['m', 'e'].forEach(function (sk) { var kk = slotK(p[0], p[1], r, sk, p[4]); if (s.a[kk]) s.a[kk] = s.a[kk].filter(function (n) { return n !== a[0]; }); }); });
+        }
       });
     });
+    s.abs[key('merkaz', 0, '', 3)] = [['שירן', 'חופשה']];
+    s.abs[key('merkaz', 0, '', 4)] = [['רועי', 'מחלה']];
+    s.abs[key('tzafon', 0, '', 1)] = [['מאיה', 'מילואים']];
+    Object.keys(s.abs).forEach(function (k) {
+      var p = k.split('|');
+      s.abs[k].forEach(function (a) { ['sec', 'ther'].forEach(function (r) { var kk = key(p[0], p[1], r, p[3]); if (s.a[kk]) s.a[kk] = s.a[kk].filter(function (x) { return x.n !== a[0]; }); }); });
+    });
+    s.lock['merkaz|-1'] = true; s.lock['tzafon|-1'] = true;
     return s;
   }
-  var st;
   function load() { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) { } }
 
   function br() { return BR[cur.b]; }
   function locked() { return !!st.lock[br().id + '|' + cur.w]; }
-  function absOn(d) { return st.abs[slotK(br().id, cur.w, '', '', d)] || []; }
+  function absOn(d) { return st.abs[key(br().id, cur.w, '', d)] || []; }
   function isAbsent(n, d) { return absOn(d).some(function (a) { return a[0] === n; }); }
-  function weekHours(n, r) {
-    var h = 0;
-    SH[r].forEach(function (sh) { for (var d = 0; d < 6; d++) { var x = shiftOf(r, sh.k, d); if (!x) continue; if ((st.a[slotK(br().id, cur.w, r, sh.k, d)] || []).indexOf(n) >= 0) h += hrs(x.t); } });
-    return h;
-  }
+  function list(r, d) { return st.a[key(br().id, cur.w, r, d)] || []; }
+  function weekHours(n, r) { var h = 0; for (var d = 0; d < 6; d++) list(r, d).forEach(function (x) { if (x.n === n) h += (m(x.e) - m(x.s)) / 60; }); return h; }
+  function target(n, r) { return br()[r].filter(function (e) { return e[0] === n; })[0][1]; }
 
   function el(id) { return document.getElementById(id); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-  function chip(n, r, x) { return '<div class="chip ' + r + '"><span class="ini">' + esc(n.charAt(0)) + '</span>' + esc(n) + (x ? '<button class="x" aria-label="הסרת ' + esc(n) + '" data-rm="' + esc(x) + '" data-n="' + esc(n) + '">✕</button>' : '') + '</div>'; }
+
+  function strip(items, o, r) {
+    var segs = '', gaps = [], curg = null, oa = o ? m(o[0]) : 0, ob = o ? m(o[1]) : 0;
+    for (var t = T0; t < T1; t += 30) {
+      var n = items.filter(function (p) { return m(p.s) <= t && m(p.e) > t; }).length, isOpen = o && t >= oa && t < ob;
+      var col = !isOpen ? '#ECEAE3' : (n > 0 ? ROLE[r].cov : '#F2D9A6');
+      segs += '<i style="right:' + ((t - T0) / (T1 - T0) * 100) + '%;width:' + (30 / (T1 - T0) * 100 + 0.2) + '%;background:' + col + '"></i>';
+      if (isOpen && n === 0) { if (curg && curg[1] === t) curg[1] = t + 30; else { curg = [t, t + 30]; gaps.push(curg); } }
+    }
+    return { html: '<div class="strip" aria-hidden="true">' + segs + '</div>', gaps: gaps };
+  }
 
   function render() {
     var b = br(), lk = locked();
     el('tabs').innerHTML = BR.map(function (x, i) { return '<button class="tab" data-b="' + i + '"' + (i === cur.b ? ' aria-current="page"' : '') + '>' + x.name + '</button>'; }).join('');
     el('wtitle').textContent = 'שבוע ' + wdate(cur.w, 0) + ' עד ' + wdate(cur.w, 5) + '.2026';
-    el('wsub').textContent = 'סניף ' + b.name + (cur.w === 0 ? ' | שבוע הבא' : cur.w < 0 ? ' | שבוע שעבר' : ' | בעוד ' + (cur.w + 1) + ' שבועות');
+    el('wsub').textContent = 'סניף ' + b.name + ' | כל עובד בשעות שלו' + (cur.w === 0 ? ' | שבוע הבא' : '');
     el('status').innerHTML = lk ? '<span class="pill lock">נעול</span>' : '<span class="pill draft">טיוטה | עדיין לא נעול</span>';
     el('lock').textContent = lk ? 'פתיחת נעילה' : 'נעילת השבוע';
     el('copy').disabled = lk;
 
-    var tot = 0, slots = 0, fill = 0, gaps = 0, dh = [0, 0, 0, 0, 0, 0];
-    var g = '<div class="wrow"><div class="rl"><span style="font-weight:600">משמרת</span></div>';
-    var body = '';
-    ['sec', 'ther'].forEach(function (r) {
-      body += '<div class="sechead"><i style="background:' + ROLE[r].color + '"></i><b>' + ROLE[r].title + '</b><span>' + ROLE[r].sub + '</span></div>';
-      SH[r].forEach(function (sh) {
-        body += '<div class="wrow"><div class="rl"><b>' + sh.l + '</b><span>' + baseT(r, sh.k)[0] + ' עד ' + baseT(r, sh.k)[1] + '</span><span>נדרשים ' + sh.need + '</span></div>';
-        for (var d = 0; d < 6; d++) {
-          var x = shiftOf(r, sh.k, d);
-          if (!x) { body += '<div class="closed">סגור</div>'; continue; }
-          var k = slotK(b.id, cur.w, r, sh.k, d), names = st.a[k] || [], h = hrs(x.t);
-          tot += h * names.length; dh[d] += h * names.length; slots += x.need; fill += Math.min(names.length, x.need);
-          var miss = x.need - names.length; if (miss > 0) gaps++;
-          body += '<div class="cell' + (lk ? ' locked' : '') + '">' + (x.t !== baseT(r, sh.k) ? (d === 5 ? '' : '<span style="font-size:11px;font-weight:700;color:#6D28D9">שעות מיוחדות ליום זה</span>') + '<span style="font-size:11.5px;font-weight:600;color:' + (d === 5 ? 'var(--muted)' : '#6D28D9') + '">' + x.t[0] + ' עד ' + x.t[1] + '</span>' : '');
-          names.forEach(function (n) { body += chip(n, r, k); });
-          body += miss > 0 ? '<button class="gap" data-k="' + k + '">' + (miss === 1 ? 'חסר עובד אחד | שיבוץ' : 'חסרים ' + miss + ' | שיבוץ') + '</button>' : '<button class="add" data-k="' + k + '" aria-label="הוספת עובד">+</button>';
-          body += '</div>';
-        }
-        body += '</div>';
-      });
+    var tot = 0, seen = {}, openDays = 0, ac = 0;
+    var g = '<div class="wrow"><div class="rl"><span style="font-weight:600">רובריקה</span></div>';
+    DAYS.forEach(function (dn, d) {
+      var o = open(b.id, cur.w, d), sp = isSpecial(b.id, cur.w, d); if (o) openDays++;
+      g += '<div class="dayh"' + (d === 5 ? ' style="background:#F1EFE9"' : '') + '><b>' + dn + ' <span style="font-family:Assistant;font-size:12px;font-weight:600;color:var(--muted)">' + wdate(cur.w, d) + '</span></b><span' + (sp ? ' class="spc"' : '') + '>' + (o ? 'פתוח ' + o[0] + '–' + o[1] : 'סגור היום') + (sp ? ' (חריגה)' : '') + '</span></div>';
     });
-    DAYS.forEach(function (d, i) { g += '<div class="dayh"' + (i === 5 ? ' style="background:#F1EFE9"' : '') + '><b>' + d + '</b><span>' + wdate(cur.w, i) + ' | ' + fmt(dh[i]) + ' ש\'</span></div>'; });
-    g += '</div>' + body;
-    var ac = 0;
+    g += '</div>';
+    ['sec', 'ther'].forEach(function (r) {
+      g += '<div class="sechead"><i style="background:' + ROLE[r].color + '"></i><b>' + ROLE[r].title + '</b><span>' + ROLE[r].sub + '</span></div><div class="wrow"><div class="rl"><b>שיבוצים</b><span>שעות לכל עובד</span></div>';
+      for (var d = 0; d < 6; d++) {
+        var o = open(b.id, cur.w, d);
+        if (!o) { g += '<div class="closed">סגור</div>'; continue; }
+        var items = list(r, d).slice().sort(function (p, q) { return m(p.s) - m(q.s); }), stp = strip(items, o, r);
+        g += '<div class="cell' + (lk ? ' locked' : '') + '">';
+        items.forEach(function (x) {
+          var h = (m(x.e) - m(x.s)) / 60; tot += h; seen[x.n] = 1;
+          var k = key(b.id, cur.w, r, d);
+          g += '<div class="pchip ' + r + '"><span class="nm"><span class="ini">' + esc(x.n.charAt(0)) + '</span>' + esc(x.n) + '</span><span style="display:flex;align-items:center;gap:2px"><span class="h">' + x.s + '–' + x.e + '</span><button class="x" aria-label="הסרת ' + esc(x.n) + '" data-rm="' + k + '" data-n="' + esc(x.n) + '" data-s="' + x.s + '">✕</button></span></div>';
+        });
+        g += '<button class="add" data-add="' + r + '|' + d + '">+ שיבוץ</button><div style="margin-top:auto">' + stp.html;
+        g += '<div class="covnote">' + (stp.gaps.length ? 'בלי עובד: ' + stp.gaps.map(function (x) { return '<bdi dir="ltr">' + hm(x[0]) + '–' + hm(x[1]) + '</bdi>'; }).join(', ') : 'כל שעות הפתיחה מכוסות') + '</div></div></div>';
+      }
+      g += '</div>';
+    });
     g += '<div class="sechead"><i style="background:#6B6D75"></i><b>היעדרויות</b><span>חופשה, מחלה, מילואים</span></div><div class="wrow"><div class="rl"><b>כל היום</b></div>';
-    for (var d = 0; d < 6; d++) { g += '<div style="min-height:44px;border:1px solid #EEECE6;border-radius:10px;padding:6px;display:flex;flex-direction:column;gap:5px">'; absOn(d).forEach(function (a) { ac++; g += '<div class="chip off"><span class="ini">' + esc(a[0].charAt(0)) + '</span>' + esc(a[0]) + ' | ' + esc(a[1]) + '</div>'; }); g += '</div>'; }
+    for (var d2 = 0; d2 < 6; d2++) { g += '<div style="min-height:44px;border:1px solid #EEECE6;border-radius:10px;padding:6px;display:flex;flex-direction:column;gap:5px">'; absOn(d2).forEach(function (a) { ac++; g += '<div class="off"><span class="ini">' + esc(a[0].charAt(0)) + '</span>' + esc(a[0]) + ' | ' + esc(a[1]) + '</div>'; }); g += '</div>'; }
     g += '</div>';
     el('grid').innerHTML = g;
 
-    el('kpis').innerHTML = '<div class="card kpi"><div class="l">שעות מתוכננות</div><div class="v">' + fmt(tot) + '</div></div><div class="card kpi"><div class="l">משבצות מאוישות</div><div class="v">' + fill + ' / ' + slots + '</div></div><div class="card kpi' + (gaps ? ' bad' : '') + '"><div class="l">משמרות חסרות</div><div class="v">' + gaps + '</div></div><div class="card kpi"><div class="l">היעדרויות השבוע</div><div class="v">' + ac + '</div></div>';
+    el('kpis').innerHTML = '<div class="card kpi"><div class="l">שעות מתוכננות</div><div class="v">' + fmt(tot) + '</div></div><div class="card kpi"><div class="l">עובדים משובצים</div><div class="v">' + Object.keys(seen).length + '</div></div><div class="card kpi"><div class="l">ימים פתוחים</div><div class="v">' + openDays + '</div></div><div class="card kpi"><div class="l">היעדרויות השבוע</div><div class="v">' + ac + '</div></div>';
 
     var sd = '<b class="rb" style="font-size:16px">עובדי הסניף</b>';
     ['sec', 'ther'].forEach(function (r) {
       sd += '<div style="display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;color:#4A4C54"><span>' + ROLE[r].title + '</span><span style="font-weight:600;color:var(--muted)">שעות / יעד</span></div>';
       b[r].forEach(function (e) {
         var h = weekHours(e[0], r), ov = h > e[1];
-        sd += '<div class="emp"><div class="r"><div class="chip ' + r + '" style="padding:0;background:transparent"><span class="ini">' + esc(e[0].charAt(0)) + '</span><span style="color:var(--ink)">' + esc(e[0]) + '</span></div><span class="rb" style="font-size:13.5px;font-weight:600;color:' + (ov ? 'var(--bad)' : 'var(--ink)') + '">' + fmt(h) + ' / ' + e[1] + '</span></div><div class="bar"><i style="width:' + Math.min(100, Math.round(h / e[1] * 100)) + '%;background:' + (ov ? '#B42318' : ROLE[r].color) + '"></i></div>' + (ov ? '<span style="font-size:11.5px;font-weight:700;color:var(--bad)">חריגה מהיעד השבועי</span>' : '') + '</div>';
+        sd += '<div class="emp"><div class="r"><span style="display:flex;align-items:center;gap:7px;font-weight:600;font-size:13px"><span class="ini" style="background:' + ROLE[r].color + '">' + esc(e[0].charAt(0)) + '</span>' + esc(e[0]) + '</span><span class="rb" style="font-size:13.5px;font-weight:600;color:' + (ov ? 'var(--bad)' : 'var(--ink)') + '">' + fmt(h) + ' / ' + e[1] + '</span></div><div class="bar"><i style="width:' + Math.min(100, Math.round(h / e[1] * 100)) + '%;background:' + (ov ? '#B42318' : ROLE[r].color) + '"></i></div>' + (ov ? '<span style="font-size:11.5px;font-weight:700;color:var(--bad)">חריגה מהיעד השבועי</span>' : '') + '</div>';
       });
     });
     el('side').innerHTML = sd;
   }
 
-  function openAssign(k) {
-    var p = k.split('|'), r = p[2], sk = p[3], d = +p[4], x = shiftOf(r, sk, d), b = br();
-    var other = sk === 'm' ? 'e' : 'm', otherShift = shiftOf(r, other, d);
-    var overlap = otherShift && mins(otherShift.t[0]) < mins(x.t[1]) && mins(x.t[0]) < mins(otherShift.t[1]);
-    var inSlot = st.a[k] || [], inOther = st.a[slotK(b.id, cur.w, r, other, d)] || [];
-    var shName = SH[r].filter(function (z) { return z.k === sk; })[0].l;
-    var h = '<div style="display:flex;justify-content:space-between;align-items:flex-start"><div><h2 style="margin:0;font-size:20px">שיבוץ למשמרת</h2><div style="font-size:14px;color:var(--muted);margin-top:2px">' + b.name + ' | ' + ROLE[r].title + ' | ' + shName + ' ' + x.t[0] + ' עד ' + x.t[1] + ' | ' + DAYS[d] + ' ' + wdate(cur.w, d) + '</div></div><button class="ibtn" data-close aria-label="סגירה">✕</button></div>';
-    h += '<div><span class="tag t-ok">משובצים ' + inSlot.length + ' מתוך ' + x.need + '</span></div>';
-    b[r].forEach(function (e) {
-      var n = e[0], wh = weekHours(n, r), s, lab;
-      if (inSlot.indexOf(n) >= 0) { s = 'dis'; lab = 'כבר במשמרת'; }
-      else if (isAbsent(n, d)) { s = 'bad'; lab = 'נעדר ביום זה'; }
-      else if (overlap && inOther.indexOf(n) >= 0) { s = 'bad'; lab = 'משמרת חופפת'; }
-      else if (wh + hrs(x.t) > e[1]) { s = 'warn'; lab = 'יעבור את היעד'; }
-      else { s = 'ok'; lab = 'פנוי'; }
-      h += '<button class="opt" ' + (s === 'dis' || s === 'bad' ? 'disabled' : 'data-pick="' + esc(n) + '" data-warn="' + (s === 'warn' ? 1 : 0) + '"') + '><span style="display:flex;align-items:center;gap:10px">' + chip(n, r) + '<span style="font-size:13px;color:var(--muted)">' + fmt(wh) + ' / ' + e[1] + ' ש\'</span></span><span class="tag t-' + s + '">' + lab + '</span></button>';
-    });
-    h += '<div><button class="btn" data-close>ביטול</button></div>';
-    el('dlgBody').innerHTML = h; el('dlgBody').dataset.k = k;
-    el('dlg').showModal();
+  // ---------- assign dialog ----------
+  var dlg = { r: null, d: null, n: null, s: null, e: null };
+  function presets(o) {
+    var oa = m(o[0]), ob = m(o[1]), mid = snap((oa + ob) / 2);
+    var p = [['פתיחה עד אמצע', hm(oa), hm(mid)], ['אמצע עד סגירה', hm(mid), hm(ob)], ['יום מלא', hm(oa), hm(ob)]];
+    if (ob - oa > 300) p.push(['קצר', hm(snap(oa + 90)), hm(snap(oa + 330))]);
+    return p.filter(function (x) { return m(x[2]) > m(x[1]); });
   }
+  function overlap(n, r, d, s, e) { return list(r, d).some(function (x) { return x.n === n && m(x.s) < m(e) && m(s) < m(x.e); }); }
+  function openAssign(r, d) {
+    var o = open(br().id, cur.w, d); dlg = { r: r, d: d, n: null, s: presets(o)[0][1], e: presets(o)[0][2] }; drawDlg(); el('dlg').showModal();
+  }
+  function drawDlg() {
+    var r = dlg.r, d = dlg.d, b = br(), o = open(b.id, cur.w, d), ps = presets(o);
+    var h = '<div style="display:flex;justify-content:space-between;align-items:flex-start"><div><h2 style="margin:0;font-size:20px">שיבוץ עובד</h2><div style="font-size:14px;color:var(--muted);margin-top:2px">' + b.name + ' | ' + ROLE[r].title + ' | ' + DAYS[d] + ' ' + wdate(cur.w, d) + ' | פתוח ' + o[0] + ' עד ' + o[1] + '</div></div><button class="ibtn" data-close aria-label="סגירה">✕</button></div>';
+    h += '<div class="step">1. בוחרים עובד</div>';
+    b[r].forEach(function (e) {
+      var n = e[0], wh = weekHours(n, r), stt, lab;
+      if (isAbsent(n, d)) { stt = 'bad'; lab = 'נעדר ביום זה'; }
+      else if (overlap(n, r, d, dlg.s, dlg.e)) { stt = 'bad'; lab = 'שעות חופפות'; }
+      else if (wh + (m(dlg.e) - m(dlg.s)) / 60 > e[1]) { stt = 'warn'; lab = 'יעבור את היעד'; }
+      else { stt = 'ok'; lab = 'פנוי'; }
+      var dis = stt === 'bad';
+      h += '<button class="opt" ' + (dis ? 'disabled' : 'data-pick="' + esc(n) + '"') + ' aria-pressed="' + (dlg.n === n) + '"><span style="display:flex;align-items:center;gap:10px"><span class="pchip ' + r + '" style="width:auto"><span class="nm"><span class="ini">' + esc(n.charAt(0)) + '</span>' + esc(n) + '</span></span><span style="font-size:13px;color:var(--muted)">' + fmt(wh) + ' / ' + e[1] + ' ש\' השבוע</span></span><span class="tag t-' + stt + '">' + lab + '</span></button>';
+    });
+    h += '<div class="step" style="margin-top:4px">2. בוחרים שעות</div><div style="display:flex;flex-wrap:wrap;gap:6px">';
+    ps.forEach(function (p) { h += '<button class="preset" data-ps="' + p[1] + '|' + p[2] + '" aria-pressed="' + (dlg.s === p[1] && dlg.e === p[2]) + '">' + p[0] + ' <bdi dir="ltr">' + p[1] + '–' + p[2] + '</bdi></button>'; });
+    h += '</div><div class="times"><label>משעה<select id="ts">' + opts(dlg.s) + '</select></label><label>עד שעה<select id="te">' + opts(dlg.e) + '</select></label></div>';
+    var dur = (m(dlg.e) - m(dlg.s)) / 60, msg = '', cls = 'n-ok';
+    if (dur <= 0) { msg = 'שעת הסיום חייבת להיות אחרי שעת ההתחלה'; cls = 'n-bad'; }
+    else if (m(dlg.s) < m(o[0]) || m(dlg.e) > m(o[1])) { msg = fmt(dur) + ' שעות | שימו לב: מחוץ לשעות הפתיחה של הסניף'; cls = 'n-warn'; }
+    else msg = fmt(dur) + ' שעות';
+    if (dlg.n && dur > 0) { var after = weekHours(dlg.n, r) + dur, tg = target(dlg.n, r); msg += ' | אחרי השיבוץ ל' + dlg.n + ': ' + fmt(after) + ' מתוך ' + tg + ' שעות בשבוע'; if (after > tg && cls === 'n-ok') cls = 'n-warn'; }
+    h += '<div class="note ' + cls + '">' + msg + '</div>';
+    var can = dlg.n && dur > 0 && !overlap(dlg.n, r, d, dlg.s, dlg.e);
+    h += '<div style="display:flex;gap:8px"><button class="btn pri" id="doAssign"' + (can ? '' : ' disabled') + '>שיבוץ</button><button class="btn" data-close>ביטול</button></div>';
+    el('dlgBody').innerHTML = h;
+  }
+  function opts(sel) { var h = ''; for (var t = 6 * 60; t <= 22 * 60; t += 30) { var v = hm(t); h += '<option' + (v === sel ? ' selected' : '') + '>' + v + '</option>'; } return h; }
 
-  function toast(t) { var e = el('toast'); e.textContent = t; e.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(function () { e.classList.remove('on'); }, 2200); }
+  function toast(t) { var e = el('toast'); e.textContent = t; e.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(function () { e.classList.remove('on'); }, 2400); }
 
+  document.addEventListener('change', function (ev) {
+    if (ev.target.id === 'ts') { dlg.s = ev.target.value; drawDlg(); }
+    if (ev.target.id === 'te') { dlg.e = ev.target.value; drawDlg(); }
+  });
   document.addEventListener('click', function (ev) {
     var t = ev.target.closest('button'); if (!t) return;
     if (t.dataset.b != null) { cur.b = +t.dataset.b; render(); }
@@ -287,19 +342,23 @@ dialog::backdrop{background:rgba(23,24,28,.4)}
     else if (t.id === 'lock') { var k = br().id + '|' + cur.w; if (st.lock[k]) delete st.lock[k]; else st.lock[k] = true; save(); render(); toast(st.lock[k] ? 'השבוע ננעל' : 'הנעילה נפתחה'); }
     else if (t.id === 'copy') {
       if (cur.w <= -1) return toast('אין שבוע קודם בדמו');
-      ['sec', 'ther'].forEach(function (r) { SH[r].forEach(function (sh) { for (var d = 0; d < 6; d++) { var src = st.a[slotK(br().id, cur.w - 1, r, sh.k, d)]; if (src) st.a[slotK(br().id, cur.w, r, sh.k, d)] = src.filter(function (n) { return !isAbsent(n, d); }); } }); });
+      ['sec', 'ther'].forEach(function (r) { for (var d = 0; d < 6; d++) { var src = st.a[key(br().id, cur.w - 1, r, d)]; if (src && open(br().id, cur.w, d)) st.a[key(br().id, cur.w, r, d)] = src.filter(function (x) { return !isAbsent(x.n, d); }).map(function (x) { return { n: x.n, s: x.s, e: x.e }; }); } });
       save(); render(); toast('השבוע הועתק מהשבוע הקודם, בלי עובדים שנעדרים');
     }
     else if (t.id === 'print') window.print();
     else if (t.id === 'reset') { st = seed(); save(); render(); toast('נתוני הדמו אופסו'); }
-    else if (t.dataset.k) openAssign(t.dataset.k);
-    else if (t.dataset.rm) { var a = st.a[t.dataset.rm] || []; st.a[t.dataset.rm] = a.filter(function (n) { return n !== t.dataset.n; }); save(); render(); }
+    else if (t.dataset.add) { var p = t.dataset.add.split('|'); openAssign(p[0], +p[1]); }
+    else if (t.dataset.rm) { var a = st.a[t.dataset.rm] || [], n = t.dataset.n, s = t.dataset.s; st.a[t.dataset.rm] = a.filter(function (x) { return !(x.n === n && x.s === s); }); save(); render(); }
     else if (t.dataset.close != null) el('dlg').close();
-    else if (t.dataset.pick) {
-      var k2 = el('dlgBody').dataset.k; (st.a[k2] = st.a[k2] || []).push(t.dataset.pick); save(); el('dlg').close(); render();
-      toast(t.dataset.warn === '1' ? t.dataset.pick + ' שובץ/ה, שימו לב: חריגה מהיעד' : t.dataset.pick + ' שובץ/ה');
+    else if (t.dataset.pick) { dlg.n = t.dataset.pick; drawDlg(); }
+    else if (t.dataset.ps) { var q = t.dataset.ps.split('|'); dlg.s = q[0]; dlg.e = q[1]; drawDlg(); }
+    else if (t.id === 'doAssign') {
+      var kk = key(br().id, cur.w, dlg.r, dlg.d), over = weekHours(dlg.n, dlg.r) + (m(dlg.e) - m(dlg.s)) / 60 > target(dlg.n, dlg.r);
+      (st.a[kk] = st.a[kk] || []).push({ n: dlg.n, s: dlg.s, e: dlg.e }); save(); el('dlg').close(); render();
+      toast(dlg.n + ' שובץ/ה ' + dlg.s + '–' + dlg.e + (over ? ' | שימו לב: חריגה מהיעד' : ''));
     }
   });
+
   st = load() || seed();
   render();
 })();

@@ -20,7 +20,7 @@
 
 ## The problem
 
-A service business with five branches ran its staff schedule in separate Excel files. Gaps were hard to spot, nobody could see how many hours each employee was getting, and planning more than a week ahead meant copy-paste errors.
+A service business with five branches ran its staff schedule in separate Excel files. Hours were never fixed: they change with the season, the people and the week. Nobody could see who covers which hours, how many hours each employee was getting, and planning ahead meant copy-paste errors.
 
 ## The solution
 
@@ -28,9 +28,11 @@ A service business with five branches ran its staff schedule in separate Excel f
 
 | | |
 |---|---|
-| **Diary per branch** | A tab for every branch. Each branch has a *front desk* section and a *professional staff* section, with morning and evening shifts. |
-| **Hours that differ per branch** | Every branch has its own shift hours, a weekday can differ (late Wednesday, short Friday), and any date can get a one-off exception. Changes apply from a chosen date and never rewrite past weeks. |
-| **Plan ahead, then lock** | Schedule weeks and months in advance. Copy last week as a starting point, fill the red gaps, lock the week. |
+| **Diary per branch** | A tab for every branch, with a *front desk* section and a *professional staff* section. |
+| **No fixed shifts** | Every assignment is a person with their own hours that day (07:30–14:00, 16:00–21:00). One-click presets and per-employee regular hours save typing, but never lock you in. |
+| **Coverage at a glance** | A coverage strip under every day shows which opening hours are covered and which are left without anyone. Informational, no nagging rules. |
+| **Opening hours per branch and day** | Each branch has its own opening hours per weekday, and any date can get a one-off exception (late Wednesday, holiday eve). Changes apply from a chosen date and never rewrite past weeks. |
+| **Plan ahead, then lock** | Schedule weeks and months in advance. Copy last week as a starting point, adjust the hours, lock the week. |
 | **Hours at a glance** | Every employee has a live counter against a weekly target. Going over turns red. |
 | **Smart warnings** | Double booking across branches is blocked. Absences, overtime and short rest periods raise warnings before you assign. |
 | **Users and roles** | Personal username and password for everyone. Admin, editor (own branches only) and view-only. |
@@ -42,15 +44,15 @@ A service business with five branches ran its staff schedule in separate Excel f
 
 <table>
   <tr>
-    <td colspan="2"><img src="assets/screens/02-weekly-schedule.png" alt="Weekly schedule"><br><sub><b>Weekly schedule</b> · the main screen. Branch tabs, KPIs, staff hour counters, gaps marked in red, absences row.</sub></td>
+    <td colspan="2"><img src="assets/screens/02-weekly-schedule.png" alt="Weekly schedule"><br><sub><b>Weekly schedule</b> · the main screen. Branch tabs, opening hours per day, each person with their own hours, coverage strip, hour counters, absences row.</sub></td>
   </tr>
   <tr>
-    <td width="50%"><img src="assets/screens/03-assign-dialog.png" alt="Assign dialog"><br><sub><b>Assign dialog</b> · who is free, who is absent, who will go over target.</sub></td>
-    <td width="50%"><img src="assets/screens/04-month-view.png" alt="Month view"><br><sub><b>Month view</b> · staffed vs. required per day, gaps and locked weeks.</sub></td>
+    <td width="50%"><img src="assets/screens/03-assign-dialog.png" alt="Assign dialog"><br><sub><b>Assign dialog</b> · pick a person, then hours (preset or free); overlaps, absences and overtime flagged before you save.</sub></td>
+    <td width="50%"><img src="assets/screens/04-month-view.png" alt="Month view"><br><sub><b>Month view</b> · people and hours per day, special days, unscheduled days and locked weeks.</sub></td>
   </tr>
   <tr>
     <td width="50%"><img src="assets/screens/05-employees.png" alt="Employees"><br><sub><b>Employees</b> · multi-branch staff, weekly targets, availability.</sub></td>
-    <td width="50%"><img src="assets/screens/06-settings.png" alt="Settings"><br><sub><b>Settings</b> · users and roles, shift templates, backups.</sub></td>
+    <td width="50%"><img src="assets/screens/06-settings.png" alt="Settings"><br><sub><b>Settings</b> · users and roles, opening hours and presets, backups.</sub></td>
   </tr>
   <tr>
     <td width="50%"><img src="assets/screens/01-login-a.png" alt="Login"><br><sub><b>Login</b> · personal credentials, password reveal.</sub></td>
@@ -66,7 +68,7 @@ A service business with five branches ran its staff schedule in separate Excel f
 
 **[Open the interactive demo →](https://galasulin.github.io/shift-scheduler-showcase/demo/)**
 
-Switch branches (each one has different shift hours), move between weeks, click a red gap to assign someone, remove a shift, copy last week and lock it. Hour counters, gaps and KPIs update live. Everything is stored only in your browser.
+Switch branches (each one has different opening hours), move between weeks, click "+ שיבוץ" to add a person with any hours, hover an assignment to remove it, copy last week and lock it. Hour counters, coverage strips and KPIs update live. Everything is stored only in your browser.
 
 ---
 
@@ -121,12 +123,12 @@ Sidur\
 
 | Situation | Behaviour |
 |---|---|
-| Same employee in two overlapping shifts (any branch) | Blocked |
+| Overlapping hours for the same employee (any branch) | Blocked |
 | Employee is on leave, sick or on reserve duty | Warning + confirm |
 | Weekly hour target exceeded | Yellow warning, red counter |
-| Shift has fewer people than required | Red dashed cell + KPI count |
+| Hours outside the branch's opening hours | Yellow warning |
 | Employee assigned outside their branches | Yellow warning |
-| Less than 11 hours rest between shifts | Yellow warning |
+| Less than 11 hours rest between two assignments | Yellow warning |
 | Editing a locked week | Blocked, unlock is admin only and logged |
 
 ---
@@ -136,7 +138,7 @@ Sidur\
 - [x] Research of existing tools (Deputy, When I Work, Homebase, open-source schedulers)
 - [x] Product spec, data model and warning rules
 - [x] UI design, review pack and interactive prototype
-- [ ] **Phase 1** · Login and users, branches, sections, employees, shift templates, weekly diary, hour counters, PDF print
+- [ ] **Phase 1** · Login and users, branches, sections, employees, opening hours and presets, weekly diary with per-person hours, coverage strip, hour counters, PDF print
 - [ ] **Phase 2** · Absences, warnings, week locking, copy previous week, auto backup
 - [ ] **Phase 3** · Day view across branches, month view, reports, Excel export
 - [ ] **Phase 4** · Excel import of existing staff, full audit log
@@ -156,7 +158,7 @@ Sidur\
 
 ## בעברית
 
-**סידור** היא מערכת ניידת לניהול משמרות בעסקים עם כמה סניפים. יומן לכל סניף, רובריקה של צוות שירות ורובריקה של צוות מקצועי, שיבוץ שבועות קדימה, נעילת שבוע, מונה שעות לכל עובד מול יעד, ואזהרות על כפילויות, היעדרויות וחריגות. רצה מתיקייה אחת על מחשב Windows, בלי התקנה ובלי שרת, עם כניסה אישית לכל משתמש וגיבוי אוטומטי.
+**סידור** היא מערכת ניידת לניהול משמרות בעסקים עם כמה סניפים. יומן לכל סניף, רובריקה של צוות שירות ורובריקה של צוות מקצועי, כל עובד משובץ בשעות שלו בלי משמרות קבועות, פס כיסוי, שיבוץ שבועות קדימה, נעילת שבוע, מונה שעות לכל עובד מול יעד, ואזהרות על כפילויות, היעדרויות וחריגות. רצה מתיקייה אחת על מחשב Windows, בלי התקנה ובלי שרת, עם כניסה אישית לכל משתמש וגיבוי אוטומטי.
 
 האפיון המלא: [`docs/spec-he.md`](docs/spec-he.md) · מסמך הבדיקה: [`docs/review-pack.pdf`](docs/review-pack.pdf)
 
