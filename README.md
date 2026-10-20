@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://galasulin.github.io/shift-scheduler-showcase/demo/"><img alt="Live demo" src="https://img.shields.io/badge/Live_demo-open-17181C?style=for-the-badge"></a>
-  <img alt="Status" src="https://img.shields.io/badge/Status-Phase_1_built-2B5BA8?style=for-the-badge">
+  <img alt="Status" src="https://img.shields.io/badge/Status-v1.1.0_all_phases_built-1E5B35?style=for-the-badge">
   <img alt="Platform" src="https://img.shields.io/badge/Windows-Portable-B4531A?style=for-the-badge">
   <img alt="RTL" src="https://img.shields.io/badge/UI-Hebrew_RTL-1E5B35?style=for-the-badge">
 </p>
@@ -33,11 +33,16 @@ A service business with five branches ran its staff schedule in separate Excel f
 | **Coverage at a glance** | A coverage strip under every day shows which opening hours are covered and which are left without anyone. Informational, no nagging rules. |
 | **Opening hours per branch and day** | Each branch has its own opening hours per weekday, and any date can get a one-off exception (late Wednesday, holiday eve). Changes apply from a chosen date and never rewrite past weeks. |
 | **Change a day from the diary** | Click a day's header to change its hours or close the branch for that date only, right from the weekly diary. The regular weekly hours stay as they are, and one click goes back to them. |
+| **Day, week and month** | One switch between a day across all branches (who works where, move an assignment to another branch), a week per branch and a month per branch (people and hours per day, special days, unscheduled days, locked weeks). |
 | **Plan ahead, then lock** | Schedule weeks and months in advance. Copy last week as a starting point, adjust the hours, lock the week. |
 | **Hours at a glance** | Every employee has a live counter against a weekly target. Going over turns red. |
-| **Smart warnings** | Double booking across branches is blocked. Absences, overtime and short rest periods raise warnings before you assign. |
+| **Smart warnings** | Double booking across branches is blocked. Absences, unavailable days, overtime and short rest periods raise warnings before you assign. |
+| **Absences and availability** | Vacation, sickness, reserve duty and other, with their own screen and a row in the diary. Optional weekdays an employee is not available. Copying last week skips people who are away. |
+| **Reports** | Filter by dates, branches and section: hours per employee against the target for the period, hours per branch per week, coverage gaps and absences. Print or export. |
+| **Excel in and out** | Export the week, the month and the reports as right-to-left sheets. Import existing staff from a template, with a preview of every error before anything is saved. |
+| **Change log** | Every change is logged with the user, the time and the values before and after, and the admin can filter and read it. |
 | **Users and roles** | Personal username and password for everyone. Admin, editor (own branches only) and view-only. |
-| **Portable and safe** | One `Sidur.exe`, one SQLite file, automatic backup on every launch (last 30 copies). |
+| **Portable and safe** | One `Sidur.exe`, one SQLite file, automatic backup on every launch (last 30 copies). Printing opens on the default printer of whoever is signed in to Windows. |
 
 ---
 
@@ -71,6 +76,8 @@ A service business with five branches ran its staff schedule in separate Excel f
 
 Switch branches (each one has different opening hours), move between weeks, click "+ שיבוץ" to add a person with any hours, hover an assignment to remove it, copy last week and lock it. Hour counters, coverage strips and KPIs update live. Everything is stored only in your browser.
 
+The demo is the clickable prototype from the design stage. The production app (v1.1.0, Windows) is private.
+
 ---
 
 ## How it works
@@ -81,7 +88,7 @@ flowchart LR
     UI <--> CORE[Tauri core<br/>rules and validation]
     CORE <--> DB[(SQLite<br/>data/sidur.db)]
     CORE --> BK[Auto backup<br/>data/backups x30]
-    CORE --> EXP[PDF and Excel export]
+    CORE --> EXP[Print, Excel export<br/>and staff import]
     BK -.optional.-> NET[Network or OneDrive folder]
 ```
 
@@ -89,11 +96,11 @@ flowchart LR
 
 ```mermaid
 erDiagram
-    BRANCH ||--o{ SHIFT_TEMPLATE : has
-    SECTION ||--o{ SHIFT_TEMPLATE : groups
+    BRANCH ||--o{ OPENING_HOURS : "open on"
+    BRANCH ||--o{ ASSIGNMENT : "diary of"
     SECTION ||--o{ EMPLOYEE : contains
+    SECTION ||--o{ ASSIGNMENT : groups
     EMPLOYEE }o--o{ BRANCH : "works at"
-    SHIFT_TEMPLATE ||--o{ ASSIGNMENT : "filled by"
     EMPLOYEE ||--o{ ASSIGNMENT : "assigned to"
     EMPLOYEE ||--o{ ABSENCE : takes
     BRANCH ||--o{ WEEK_LOCK : "locks"
@@ -107,7 +114,8 @@ Sidur\
 ├── Sidur.exe
 └── data\
     ├── sidur.db
-    └── backups\
+    ├── backups\
+    └── exports\
 ```
 
 | Layer | Choice | Why |
@@ -116,7 +124,7 @@ Sidur\
 | UI | React + Tailwind | Modern, fully right-to-left Hebrew interface |
 | Data | SQLite | One file, no database server, trivial to back up |
 | Security | Argon2, roles, lockout, idle logout, audit log | Several people can share one PC safely |
-| Output | PDF + XLSX | Print a week for the branch wall, export for reports |
+| Output | Print + XLSX | Print a day, week, month or report; Excel export, and staff import from Excel |
 
 ---
 
@@ -129,6 +137,7 @@ Sidur\
 | Weekly hour target exceeded | Yellow warning, red counter |
 | Hours outside the branch's opening hours | Yellow warning |
 | Employee assigned outside their branches | Yellow warning |
+| Employee marked as not available that weekday | Yellow warning |
 | Less than 11 hours rest between two assignments | Yellow warning |
 | Editing a locked week | Blocked, unlock is admin only and logged |
 
@@ -139,10 +148,12 @@ Sidur\
 - [x] Research of existing tools (Deputy, When I Work, Homebase, open-source schedulers)
 - [x] Product spec, data model and warning rules
 - [x] UI design, review pack and interactive prototype
-- [x] **Phase 1** · Login and users, branches, sections, employees, opening hours and presets, changing a day's hours from the diary, weekly diary with per-person hours, coverage strip, hour counters, week locking, copy previous week, auto backup, PDF print
-- [ ] **Phase 2** · Absences, warnings
-- [ ] **Phase 3** · Day view across branches, month view, reports, Excel export
-- [ ] **Phase 4** · Excel import of existing staff, full audit log
+- [x] **Phase 1** (v1.0) · Login and users, branches, sections, employees, opening hours and presets, changing a day's hours from the diary, weekly diary with per-person hours, coverage strip, hour counters, week locking, copy previous week, auto backup, PDF print
+- [x] **Phase 2** (v1.1) · Absences, unavailable weekdays, warnings
+- [x] **Phase 3** (v1.1) · Day view across branches, month view, reports with filters, Excel export
+- [x] **Phase 4** (v1.1) · Excel import of existing staff, full change log
+
+**v1.1.0 (October 2026): every phase is built.** Acceptance run on the real `Sidur.exe` from a clean folder: setup, roles, lockout, overlaps, locked weeks, absences, month and day views, reports, Excel export and import, change log, print to PDF, restart, moving the folder and idle sign-out.
 
 ---
 
@@ -160,6 +171,8 @@ Sidur\
 ## בעברית
 
 **סידור** היא מערכת ניידת לניהול משמרות בעסקים עם כמה סניפים. יומן לכל סניף, רובריקה של צוות שירות ורובריקה של צוות מקצועי, כל עובד משובץ בשעות שלו בלי משמרות קבועות, פס כיסוי, שיבוץ שבועות קדימה, נעילת שבוע, מונה שעות לכל עובד מול יעד, ואזהרות על כפילויות, היעדרויות וחריגות. רצה מתיקייה אחת על מחשב Windows, בלי התקנה ובלי שרת, עם כניסה אישית לכל משתמש וגיבוי אוטומטי.
+
+**גרסה 1.1.0 (אוקטובר 2026): כל השלבים נבנו.** תצוגת יום לכל הסניפים, שבוע וחודש, היעדרויות וימים לא זמינים, דוחות עם סינון, ייצוא לאקסל, ייבוא עובדים מאקסל ויומן שינויים. ההדפסה נפתחת על מדפסת ברירת המחדל של המשתמש.
 
 האפיון המלא: [`docs/spec-he.md`](docs/spec-he.md) · מסמך הבדיקה: [`docs/review-pack.pdf`](docs/review-pack.pdf)
 
