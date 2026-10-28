@@ -18,6 +18,31 @@
 
 ---
 
+## Real app screenshots (demo data)
+
+<p align="center"><img src="assets/real-app/09-assign-shift.gif" alt="Assigning a shift in the real Sidur app (demo data)" width="100%"><br><sub><b>Real app screenshots (demo data)</b> · captured from Sidur 1.1.0 itself, running on an invented dataset: 5 branches (מרכז, צפון, שרון, שפלה, דרום), 25 invented employees, two weeks of shifts. The app's source stays private.</sub></p>
+
+<table>
+  <tr>
+    <td width="50%"><img src="assets/real-app/01-week-view.png" alt="Week view"><br><sub><b>Week</b> · a coverage gap on Tuesday evening, an employee over target in red, the absences row.</sub></td>
+    <td width="50%"><img src="assets/real-app/02-day-view-all-branches.png" alt="Day view across branches"><br><sub><b>Day</b> · one day across all five branches.</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="assets/real-app/03-month-view.png" alt="Month view"><br><sub><b>Month</b> · a special-hours day in purple.</sub></td>
+    <td width="50%"><img src="assets/real-app/04-assign-shift-dialog.png" alt="Assign dialog"><br><sub><b>Assign</b> · each employee's status: free, overlapping, other branch, would exceed target.</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="assets/real-app/05-employees.png" alt="Employees"><br><sub><b>Employees</b></sub></td>
+    <td width="50%"><img src="assets/real-app/06-absences.png" alt="Absences"><br><sub><b>Absences</b> · vacation, sick, reserve duty.</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="assets/real-app/07-reports.png" alt="Reports"><br><sub><b>Reports</b> · hours per employee vs. target, uncovered hours.</sub></td>
+    <td width="50%"><img src="assets/real-app/08-settings-opening-hours.png" alt="Opening hours"><br><sub><b>Settings</b> · opening hours per branch, a date exception, shift presets.</sub></td>
+  </tr>
+</table>
+
+---
+
 ## The problem
 
 A service business with five branches ran its staff schedule in separate Excel files. Hours were never fixed: they change with the season, the people and the week. Nobody could see who covers which hours, how many hours each employee was getting, and planning ahead meant copy-paste errors.
@@ -170,6 +195,8 @@ Sidur\
 
 ## בעברית
 
+**צילומים מהאפליקציה האמיתית (נתוני דמו):** בראש העמוד, בסעיף "Real app screenshots", יש צילומים מ-Sidur 1.1.0 עצמה, שרצה על נתונים בדויים: 5 סניפים, 25 עובדים בדויים ושבועיים של משמרות. קוד האפליקציה נשאר פרטי.
+
 **סידור** היא מערכת ניידת לניהול משמרות בעסקים עם כמה סניפים. יומן לכל סניף, רובריקה של צוות שירות ורובריקה של צוות מקצועי, כל עובד משובץ בשעות שלו בלי משמרות קבועות, פס כיסוי, שיבוץ שבועות קדימה, נעילת שבוע, מונה שעות לכל עובד מול יעד, ואזהרות על כפילויות, היעדרויות וחריגות. רצה מתיקייה אחת על מחשב Windows, בלי התקנה ובלי שרת, עם כניסה אישית לכל משתמש וגיבוי אוטומטי.
 
 **גרסה 1.1.0 (אוקטובר 2026): כל השלבים נבנו.** תצוגת יום לכל הסניפים, שבוע וחודש, היעדרויות וימים לא זמינים, דוחות עם סינון, ייצוא לאקסל, ייבוא עובדים מאקסל ויומן שינויים. ההדפסה נפתחת על מדפסת ברירת המחדל של המשתמש.
@@ -188,5 +215,7 @@ Sidur\
     </td>
   </tr>
 </table>
+
+<p align="center"><b>Built by <a href="https://github.com/galasulin">Gal Asulin</a>, IT Manager</b></p>
 
 <sub>© 2026 Gal Asulin. Showcase project. Source code for the production app is not included. See <a href="LICENSE">LICENSE</a>.</sub>
