@@ -61,18 +61,8 @@ Real app screenshots, captured from Sidur 1.1.0 running on an invented dataset: 
 
 <table>
   <tr>
-    <td width="33%"><a href="assets/screens/02-weekly-schedule.png"><img src="assets/screens/02-weekly-schedule.png" width="100%"></a><br><sub><b>Weekly schedule</b> · branch tabs, coverage strip, hour counters</sub></td>
-    <td width="33%"><a href="assets/screens/03-assign-dialog.png"><img src="assets/screens/03-assign-dialog.png" width="100%"></a><br><sub><b>Assign dialog</b> · person first, then hours</sub></td>
-    <td width="33%"><a href="assets/screens/04-month-view.png"><img src="assets/screens/04-month-view.png" width="100%"></a><br><sub><b>Month view</b> · special and unscheduled days</sub></td>
-  </tr>
-  <tr>
-    <td width="33%"><a href="assets/screens/05-employees.png"><img src="assets/screens/05-employees.png" width="100%"></a><br><sub><b>Employees</b> · multi-branch staff, targets</sub></td>
-    <td width="33%"><a href="assets/screens/06-settings.png"><img src="assets/screens/06-settings.png" width="100%"></a><br><sub><b>Settings</b> · users, hours, presets, backups</sub></td>
-    <td width="33%"><a href="assets/screens/01-login-a.png"><img src="assets/screens/01-login-a.png" width="100%"></a><br><sub><b>Login</b> · personal credentials</sub></td>
-  </tr>
-  <tr>
-    <td width="33%"><a href="assets/screens/01-login-b.png"><img src="assets/screens/01-login-b.png" width="100%"></a><br><sub><b>Lockout and first login</b> · 5 attempts, 5 minutes</sub></td>
-    <td></td><td></td>
+    <td width="50%"><a href="assets/screens/01-login-a.png"><img src="assets/screens/01-login-a.png" width="100%"></a><br><sub><b>Login</b> · personal credentials</sub></td>
+    <td width="50%"><a href="assets/screens/01-login-b.png"><img src="assets/screens/01-login-b.png" width="100%"></a><br><sub><b>Lockout and first login</b> · 5 attempts, 5 minutes</sub></td>
   </tr>
 </table>
 

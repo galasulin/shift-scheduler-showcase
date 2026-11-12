@@ -5,7 +5,7 @@
 # Sidur · סידור
 
 **מערכת ניידת לניהול משמרות, בעברית מלאה, לעסקים עם כמה סניפים.**<br>
-יומן לכל סניף, רובריקה נפרדת לצוות שירות ולצוות מקצועי, נעילת שבוע ומעקב שעות חי.
+יומן לכל סניף, רובריקה נפרדת לשירות לקוחות ולצוות מקצועי, נעילת שבוע ומעקב שעות חי.
 
 🇬🇧 [English](README.md) · 🇮🇱 [עברית](README.he.md)
 
@@ -63,18 +63,8 @@
 
 <table>
   <tr>
-    <td width="33%"><a href="assets/screens/02-weekly-schedule.png"><img src="assets/screens/02-weekly-schedule.png" width="100%"></a><br><sub><b>יומן שבועי</b> · לשוניות סניפים, פס כיסוי, מוני שעות</sub></td>
-    <td width="33%"><a href="assets/screens/03-assign-dialog.png"><img src="assets/screens/03-assign-dialog.png" width="100%"></a><br><sub><b>חלון שיבוץ</b> · קודם עובד, אחר כך שעות</sub></td>
-    <td width="33%"><a href="assets/screens/04-month-view.png"><img src="assets/screens/04-month-view.png" width="100%"></a><br><sub><b>תצוגת חודש</b> · ימים מיוחדים וימים שלא שובצו</sub></td>
-  </tr>
-  <tr>
-    <td width="33%"><a href="assets/screens/05-employees.png"><img src="assets/screens/05-employees.png" width="100%"></a><br><sub><b>עובדים</b> · עובדים בכמה סניפים, יעדים</sub></td>
-    <td width="33%"><a href="assets/screens/06-settings.png"><img src="assets/screens/06-settings.png" width="100%"></a><br><sub><b>הגדרות</b> · משתמשים, שעות, קיצורים, גיבויים</sub></td>
-    <td width="33%"><a href="assets/screens/01-login-a.png"><img src="assets/screens/01-login-a.png" width="100%"></a><br><sub><b>כניסה</b> · שם משתמש וסיסמה אישיים</sub></td>
-  </tr>
-  <tr>
-    <td width="33%"><a href="assets/screens/01-login-b.png"><img src="assets/screens/01-login-b.png" width="100%"></a><br><sub><b>נעילה וכניסה ראשונה</b> · 5 ניסיונות, 5 דקות</sub></td>
-    <td></td><td></td>
+    <td width="50%"><a href="assets/screens/01-login-a.png"><img src="assets/screens/01-login-a.png" width="100%"></a><br><sub><b>כניסה</b> · שם משתמש וסיסמה אישיים</sub></td>
+    <td width="50%"><a href="assets/screens/01-login-b.png"><img src="assets/screens/01-login-b.png" width="100%"></a><br><sub><b>נעילה וכניסה ראשונה</b> · 5 ניסיונות, 5 דקות</sub></td>
   </tr>
 </table>
 
@@ -92,7 +82,7 @@
 
 | | |
 |---|---|
-| **יומן לכל סניף** | לשונית לכל סניף, עם רובריקה של *צוות שירות* ורובריקה של *צוות מקצועי*. |
+| **יומן לכל סניף** | לשונית לכל סניף, עם רובריקה של *שירות לקוחות* ורובריקה של *צוות מקצועי*. |
 | **בלי משמרות קבועות** | כל שיבוץ הוא עובד עם השעות שלו באותו יום (07:30–14:00, ‏16:00–21:00). קיצורים בלחיצה ושעות רגילות לכל עובד חוסכים הקלדה, אבל אף פעם לא נועלים. |
 | **כיסוי במבט אחד** | פס כיסוי מתחת לכל יום מראה אילו שעות פתיחה מכוסות ואילו נשארו בלי אף אחד. מידע בלבד, בלי חוקים מציקים. |
 | **שעות פתיחה לכל סניף ולכל יום** | לכל סניף שעות פתיחה משלו לכל יום בשבוע, ולכל תאריך אפשר להגדיר חריגה חד-פעמית (רביעי ארוך, ערב חג). שינוי חל מתאריך שבוחרים ולא משכתב שבועות קודמים. |
